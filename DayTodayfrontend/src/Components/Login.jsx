@@ -46,63 +46,83 @@ nav("/dashboard")
 
     return(
         <>
-        {/* <div className="  rounded fixed inset-0 z-50 flex items-center justify-center bg-black/85 "> */}
-         
-              <form onSubmit={loginned} className="text-center  rounded-xl
-              
-              shadow-2xl
-              
-              my-20 max-w-3xl mx-auto h-80 ">
+  <form
+    onSubmit={loginned}
+    className="max-w-4xl mx-auto my-10 px-4"
+  >
+    <div className="grid md:grid-cols-2 shadow-2xl shadow-gray-400 rounded-xl overflow-hidden">
 
+      {/* Left Section */}
+      <div
+        className="flex items-center justify-center text-white p-6 md:p-10"
+        style={{
+          backgroundImage:
+            "url('https://img.freepik.com/premium-photo/purple-gradient-background_969965-38053.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <h1 className="text-xl md:text-2xl font-bold text-center">
+          Welcome to DayTodayNews Dashboard
+        </h1>
+      </div>
 
-<div className="mainbox grid grid-cols-2 shadow-2xl shadow-gray-500">
-                <div className="box  h-80 rounded-tl-lg rounded-bl-lg text-white"
-                 style={{backgroundImage:"url('https://img.freepik.com/premium-photo/purple-gradient-background_969965-38053.jpg')",
-                  backgroundSize:'cover'
-                 }}>
-                <h1 className="text-2xl font-bold py-25">Welcome to DayTodayNews Dashboard </h1>
+      {/* Right Section */}
+      <div className="p-6 md:p-10 bg-white">
+        <h1 className="font-bold text-purple-600 text-xl mb-4 text-center">
+          USER LOGIN
+        </h1>
 
-                </div>
-                {/* <h1 className="text-3xl text-red-600 justify-items-end " 
-                onClick={()=>setOpenModal(false)}>&times;</h1> */}
-         <div className="box my-10">
-          <h1 className="font-bold text-purple-600">USER LOGIN</h1>
-                <div className="my-3">
-                  <h2 className="font-bold text-black">User email</h2>
-                  <input
-                    type="text"
-                    placeholder="enter username" value={email} onChange={(e)=>setEmail(e.target.value)} 
-                    className="bg-purple-300  rounded-xl"required
-                  />
-                </div>
-        
-                <div className="my-3">
-                  <h2 className="font-bold text-black">Password</h2>
-                  <input
-                    type="password"
-                    placeholder="enter password"
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                    className="bg-purple-300 rounded-xl"
-                    required
-                  />
-                </div>
-        
-                <button
-                  type="submit"
-                  className="px-2 rounded cursor-pointer hover:scale-85
-                  font-semibold  transition-all duration-200 my-0 text-white hover:bg-red-400 py-1 bg-purple-700">
-                  Login
-                </button>
-        
-        <p className="text-gray-700 font-semibold">or</p>
-                <h1 className="font-semibold text-gray-600"> create new account? <span className="text-black
-                font-bold"><Link to="/register">Signup</Link></span></h1>
- </div>            {/* </div> */}
- </div>
-               </form>
- 
-        </>
+        {/* Email */}
+        <div className="mb-4">
+          <label className="font-semibold text-black block mb-1">
+            User Email
+          </label>
+          <input
+            type="text"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full bg-purple-100 p-2 rounded-lg outline-none focus:ring-2 focus:ring-purple-400"
+            required
+          />
+        </div>
+
+        {/* Password */}
+        <div className="mb-4">
+          <label className="font-semibold text-black block mb-1">
+            Password
+          </label>
+          <input
+            type="password"
+            placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-purple-100 p-2 rounded-lg outline-none focus:ring-2 focus:ring-purple-400"
+            required
+          />
+        </div>
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="w-full py-2 bg-purple-700 text-white rounded-lg font-semibold hover:bg-purple-800 transition"
+        >
+          Login
+        </button>
+
+        <p className="text-gray-600 text-center my-3">or</p>
+
+        <p className="text-center text-gray-600">
+          Create new account?{" "}
+          <span className="text-purple-700 font-bold">
+            <Link to="/register">Signup</Link>
+          </span>
+        </p>
+      </div>
+    </div>
+  </form>
+</>
     )
 }
 export default Login
