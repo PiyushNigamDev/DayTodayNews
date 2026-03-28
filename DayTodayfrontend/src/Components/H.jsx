@@ -121,7 +121,7 @@ const [current, setCurrent] = useState(0);
           >
             {/* Image */}
             <img
-              src={`http://localhost:3000/${item.thumbnail}`}
+              src={`https://daytodaynews-backend.onrender.com/${item.thumbnail}`}
               alt="news"
               className="w-full h-48 object-cover"
             />
