@@ -31,7 +31,7 @@
 import jwt from "jsonwebtoken"
 import dotenv from "dotenv";
 dotenv.config();
-const Auth =async(req,res,next)=>{
+const auth =async(req,res,next)=>{
     let token;
     const {authorization}=req.headers;
     if(authorization&&authorization.startsWith("Bearer ")){
@@ -53,4 +53,4 @@ next()
         })
     }
 }
-export default Auth;
+export default auth;

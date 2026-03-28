@@ -2,7 +2,7 @@ import express from "express"
 
  import * as studentRoutes from "../Controller/student.controller.js"
 import upload from "../middleware/multer.js"
-import Auth from "../middleware/Auth.js"
+import  Auth from "../middleware/auth.js"; 
 const router=express.Router()
 
  
