@@ -6,14 +6,13 @@ import connectDB from "./config/database.js"
 import newsRoutes from "./router/Router.js"
 import Student from "./models/Student.js"
 // import auth from "./middleware/auth.js"
-
-connectDB()
-dotenv.config()
+dotenv.config();
+connectDB();
 const app=express()
 
 app.use(cors())
 app.use(express.json())
-const port=3000
+// const port=3000
 
 app.get("/", (req,res)=>{
     res.send("api is running")
@@ -31,6 +30,8 @@ app.get("/search", async(req,res)=>{
     res.json(result);
 
 })
-app.listen(port,()=>{
-    console.log("server is running on port 3000")
-})
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
