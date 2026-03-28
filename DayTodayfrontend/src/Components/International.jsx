@@ -196,182 +196,128 @@ setDel(deleted);
 
              <span className="justify-end flex my-2 px-2">   <button className="bg-blue-500 px-2 py-2
               cursor-pointer hover:scale-90 transition-all duration-100 rounded font-bold text-white 
-                 " onClick={()=>setOpenModal(true)}>Add News</button></span>
+                 " onClick={()=>{setOpenModal(true);
+                   setTitle("");
+    setContent("");
+    setSlug("");
+    setAuthor("");
+    setCategory("");
+    setLanguage("");
+    setShortdescription("");
+    setSource("");
+    setThumbnail(null)}
+                 }>Add News</button></span>
 
 
 {openModal && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+ <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-2 sm:px-4">
 
-    <form className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 relative">
-      
-       <button
-        type="button"
-        className="absolute top-4 right-5 text-3xl text-gray-400 hover:text-red-500 transition"
-        onClick={() => setOpenModal(false)}
+  <form className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 relative max-h-[90vh] overflow-y-auto">
+
+    {/* CLOSE BUTTON */}
+    <button
+      type="button"
+      className="absolute top-3 right-4 text-2xl sm:text-3xl text-gray-400 hover:text-red-500 transition"
+      onClick={() => setOpenModal(false)}
+    >
+      &times;
+    </button>
+
+    {/* TITLE */}
+    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 mb-4 sm:mb-6 text-center sm:text-left">
+      Add New Post
+    </h2>
+
+    {/* FORM GRID */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+
+      {/* INPUT FIELD TEMPLATE */}
+      {[
+        ["Title", title, setTitle],
+        ["Content", content, setContent],
+        ["Slug", slug, setSlug],
+        ["Author", author, setAuthor],
+        ["Short Description", short_description, setShortdescription],
+        ["Source", source, setSource],
+      ].map(([label, value, setter]) => (
+        <div key={label}>
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+            {label}
+          </label>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setter(e.target.value)}
+            placeholder={`Enter ${label}`}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            required
+          />
+        </div>
+      ))}
+
+      {/* CATEGORY */}
+      <div>
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Category
+        </label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        >
+          <option value="">Select category</option>
+          <option value="Politics">Politics</option>
+          <option value="nature">Nature</option>
+          <option value="international">International</option>
+          <option value="Sports">Sports</option>
+          <option value="national">National</option>
+          <option value="Social">Social</option>
+        </select>
+      </div>
+
+      {/* LANGUAGE */}
+      <div>
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Language
+        </label>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        >
+          <option value="">Select language</option>
+          <option value="Hindi">Hindi</option>
+          <option value="English">English</option>
+        </select>
+      </div>
+
+      {/* FILE */}
+      <div className="sm:col-span-2">
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Upload Image
+        </label>
+        <input
+          type="file"
+          onChange={(e) => setThumbnail(e.target.files[0])}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 cursor-pointer text-sm"
+        />
+      </div>
+    </div>
+
+    {/* BUTTON */}
+    <div className="flex justify-center mt-6 sm:mt-8">
+      <button
+        type="submit"
+        onClick={add}
+        className="w-full sm:w-auto bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 sm:px-8 py-2.5 
+        rounded-lg shadow-md hover:from-indigo-600 hover:to-purple-700 active:scale-90 cursor-pointer  transition font-semibold"
       >
-        &times;
+        Add Post
       </button>
+    </div>
 
-       <h2 className="text-2xl font-bold text-slate-800 mb-6">
-        Add New Post
-      </h2>
-
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Title
-          </label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter title"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Content
-          </label>
-          <input
-            type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Enter content"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Slug
-          </label>
-          <input
-            type="text"
-            value={slug}
-            onChange={(e) => setSlug(e.target.value)}
-            placeholder="Unique slug"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Author
-          </label>
-          <input
-            type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            placeholder="Author name"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Short Description
-          </label>
-          <input
-            type="text"
-            value={short_description}
-            onChange={(e) => setShortdescription(e.target.value)}
-            placeholder="Short description"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Source
-          </label>
-          <input
-            type="text"
-            value={source}
-            onChange={(e) => setSource(e.target.value)}
-            placeholder="Source"
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            required
-          />
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Category
-          </label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer"
-            required
-          >
-             <option value="">Select category</option>
-            <option value="Politics">Politics</option>
-            <option value="nature">Nature</option>
-            <option value="international">International</option>
-            <option value="Sports">Sports</option>
-            <option value="national">National</option>
-            <option value="Social">Social</option>
-          </select>
-        </div>
-
-         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Language
-          </label>
-          <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer"
-            required
-          >
-            <option value="">Select language</option>
-            <option value="Hindi">Hindi</option>
-            <option value="English">English</option>
-          </select>
-        </div>
-
-         <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Upload Image
-          </label>
-          <input
-            type="file"
-            onChange={(e) => setThumbnail(e.target.files[0])}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 cursor-pointer"
-          />
-        </div>
-
-      </div>
-
-       <div className="flex justify-center mt-8">
-        <button
-          type="submit"
-          onClick={add}
-          className="bg-blue-500 text-white px-8 py-2 rounded-lg
-          hover:bg-blue-700 active:scale-95 transition font-semibold"
-         >
-          Add Post
-        </button>
-      </div>
-
-    </form>
-  </div>
+  </form>
+</div>
 )}
 
 
@@ -379,119 +325,123 @@ setDel(deleted);
 {/* <button className="relative left-200 bg-green-600 cursor-pointer shadow-85  px-3 py-1" onClick={gets} >Refresh</button> */}
 
 {modal2 && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+ <div
 
-    <form className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 relative">
-      
-      {/* Close */}
-      <button
-        type="button"
-        className="absolute top-4 right-5 text-3xl text-gray-400 hover:text-rose-500 transition"
-        onClick={() => setModal2(false)}
-      >
-        &times;
-      </button>
+  className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-2 sm:px-4"
+>
+  
+  <form
+    onClick={(e) => e.stopPropagation()}
+    className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 relative max-h-[90vh] overflow-y-auto"
+  >
 
-      {/* Heading */}
-      <h2 className="text-2xl font-bold text-slate-800 mb-6">
-        Update Post
-      </h2>
+    {/* CLOSE BUTTON */}
+    <button
+      type="button"
+      onClick={() => setModal2(false)}
+      className="absolute top-3 right-4 text-2xl sm:text-3xl text-gray-400 hover:text-rose-500 transition"
+    >
+      &times;
+    </button>
 
-      {/* Form Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* HEADING */}
+    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-800 mb-4 sm:mb-6 text-center sm:text-left">
+      Update Post
+    </h2>
 
-        {[
-          ["Title", title, setTitle],
-          ["Content", content, setContent],
-          ["Slug", slug, setSlug],
-          ["Author", author, setAuthor],
-          ["Short Description", short_description, setShortdescription],
-          ["Source", source, setSource],
-        ].map(([label, value, setter]) => (
-          <div key={label}>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              {label}
-            </label>
-            <input
-              type="text"
-              value={value}
-              onChange={(e) => setter(e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-4 py-2
-              focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-              required
-            />
-          </div>
-        ))}
+    {/* FORM GRID */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
 
-        {/* Category */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Category
-          </label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer"
-            required
-          >
-            <option value="">Select category</option>
-            <option value="Politics">Politics</option>
-            <option value="nature">Nature</option>
-            <option value="international">International</option>
-            <option value="Sports">Sports</option>
-            <option value="national">National</option>
-            <option value="Social">Social</option>
-          </select>
-        </div>
-
-        {/* Language */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Language
-          </label>
-          <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2
-            focus:ring-2 focus:ring-indigo-500 focus:outline-none cursor-pointer"
-            required
-          >
-            <option value="">Select language</option>
-            <option value="Hindi">Hindi</option>
-            <option value="English">English</option>
-          </select>
-        </div>
-
-        {/* Image */}
-        <div className="md:col-span-2">
-          <label className="block text-sm font-semibold text-gray-700 mb-1">
-            Upload Image
+      {[
+        ["Title", title, setTitle],
+        ["Content", content, setContent],
+        ["Slug", slug, setSlug],
+        ["Author", author, setAuthor],
+        ["Short Description", short_description, setShortdescription],
+        ["Source", source, setSource],
+      ].map(([label, value, setter]) => (
+        <div key={label}>
+          <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+            {label}
           </label>
           <input
-            type="file"
-            onChange={(e) => setThumbnail(e.target.files[0])}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 cursor-pointer"
+            type="text"
+            value={value}
+            onChange={(e) => setter(e.target.value)}
+            className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+            required
           />
         </div>
+      ))}
+
+      {/* CATEGORY */}
+      <div>
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Category
+        </label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        >
+          <option value="">Select category</option>
+          <option value="Politics">Politics</option>
+          <option value="nature">Nature</option>
+          <option value="international">International</option>
+          <option value="Sports">Sports</option>
+          <option value="national">National</option>
+          <option value="Social">Social</option>
+        </select>
       </div>
 
-      {/* Update Button */}
-      <div className="flex justify-center mt-8">
-        <button
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault()
-            updates(selectId)
-          }}
-          className="bg-blue-500 text-white px-8 py-2 rounded-lg
-          hover:bg-blue-700 active:scale-95 transition font-semibold cursor-pointer"
+      {/* LANGUAGE */}
+      <div>
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Language
+        </label>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2.5 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 focus:outline-none"
         >
-          Update Post
-        </button>
+          <option value="">Select language</option>
+          <option value="Hindi">Hindi</option>
+          <option value="English">English</option>
+        </select>
       </div>
-    </form>
-  </div>
+
+      {/* FILE */}
+      <div className="sm:col-span-2">
+        <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
+          Upload Image
+        </label>
+        <input
+          type="file"
+          onChange={(e) => setThumbnail(e.target.files[0])}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 cursor-pointer text-sm"
+        />
+      </div>
+    </div>
+
+    {/* BUTTON */}
+    <div className="flex justify-center mt-6 sm:mt-8">
+      <button
+        type="submit"
+        onClick={(e) => {
+          e.preventDefault();
+          updates(selectId);
+          setModal2(false)
+        }}
+        className="w-full sm:w-auto bg-gradient-to-r from-blue-500
+         to-indigo-600 text-white px-6 sm:px-8 py-2.5 rounded-lg shadow-md
+          hover:from-blue-600 hover:to-indigo-700 active:scale-90 cursor-pointer transition font-semibold"
+      >
+        Update Post
+      </button>
+    </div>
+
+  </form>
+</div>
 )}
 
                  
