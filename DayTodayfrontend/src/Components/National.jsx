@@ -9,7 +9,7 @@
  const gets=async()=>{
    // e.preventDefault()
    try{
-     const get= await axios.get("http://localhost:3000/student/gets"
+     const get= await axios.get("https://daytodaynews-backend.onrender.com/student/gets"
      
    );
    
@@ -53,7 +53,7 @@
       formData.append("language",language);
       formData.append("thumbnail",thumbnail);
       console.log("thumbnail",);
-     const addNews= await axios.post("http://localhost:3000/student/upload",
+     const addNews= await axios.post("https://daytodaynews-backend.onrender.com/student/upload",
        formData,
        {
       headers:{
@@ -109,7 +109,7 @@
  }
        const token=localStorage.getItem("token")
        try{
- const update=await axios.put(`http://localhost:3000/student/${id}`,formData,
+ const update=await axios.put(`https://daytodaynews-backend.onrender.com/student/${id}`,formData,
    {
      headers:{
        Authorization:`Bearer ${token}`
@@ -143,7 +143,7 @@
  const deletes=async(id)=>{
    const token=localStorage.getItem("token");
    try{
-     const deleted=await axios.delete(`http://localhost:3000/student/${id}`,{
+     const deleted=await axios.delete(`https://daytodaynews-backend.onrender.com/student/${id}`,{
        headers:{
          Authorization:`Bearer ${token}`
        }

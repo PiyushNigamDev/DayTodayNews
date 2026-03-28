@@ -16,7 +16,7 @@ const {setLogin}=useContext(Auths)
 const loginned=async(e)=>{
   e.preventDefault()
   try{
-const log=await axios.post("http://localhost:3000/student/login",{
+const log=await axios.post("https://daytodaynews-backend.onrender.com/student/login",{
   email,
   password
 })
