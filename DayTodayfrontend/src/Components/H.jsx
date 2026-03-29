@@ -37,7 +37,7 @@ const [current, setCurrent] = useState(0);
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/student/gets");
+      const res = await axios.get("https://daytodaynews-backend.onrender.com/student/gets");
       setNews(res.data.data);
     } catch (err) {
       console.log(err.message);
