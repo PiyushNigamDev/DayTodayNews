@@ -17,16 +17,13 @@ const allowedOrigins = [
   "https://day-today-news.vercel.app"
 ];
 
+ 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [
+      "https://day-today-news.vercel.app", // old domain
+      "https://day-today-news-299jlmpux-piyushnigam2355-2854s-projects.vercel.app" // current frontend
+    ],
     credentials: true,
   })
 );
