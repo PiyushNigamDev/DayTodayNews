@@ -153,12 +153,12 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const cards = [
-    { name: "Social", color: "bg-orange-500", path: "/social" },
-    { name: "International", color: "bg-yellow-400", path: "/international" },
-    { name: "Nature", color: "bg-pink-400", path: "/nature" },
-    { name: "Politics", color: "bg-red-400", path: "/politics" },
-    { name: "Sports", color: "bg-blue-500", path: "/sports" },
-    { name: "National", color: "bg-green-500", path: "/national" },
+    { name: "Social", color: "bg-orange-500", path: "/dashboard/social" },
+    { name: "International", color: "bg-yellow-400", path: "/dashboard/international" },
+    { name: "Nature", color: "bg-pink-400", path: "/dashboard/nature" },
+    { name: "Politics", color: "bg-red-400", path: "/dashboard/politics" },
+    { name: "Sports", color: "bg-blue-500", path: "/dashboard/sports" },
+    { name: "National", color: "bg-green-500", path: "/dashboard/national" },
   ];
 
   return (
