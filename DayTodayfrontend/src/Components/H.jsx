@@ -37,7 +37,7 @@ const [current, setCurrent] = useState(0);
 
   const fetchNews = async () => {
     try {
-      const res = await axios.get("https://daytodaynews-backend.onrender.com/student/gets");
+      const res = await axios.get("https://daytodaynews.onrender.com/student/gets");
       setNews(res.data.data);
     } catch (err) {
       console.log(err.message);
@@ -121,7 +121,7 @@ const [current, setCurrent] = useState(0);
           >
             {/* Image */}
             <img
-              src={`https://daytodaynews-backend.onrender.com/${item.thumbnail}`}
+              src={`https://daytodaynews.onrender.com/${item.thumbnail}`}
               alt="news"
               className="w-full h-48 object-cover"
             />

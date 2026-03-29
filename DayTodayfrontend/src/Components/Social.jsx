@@ -9,7 +9,7 @@ import { useEffect } from "react";
 const gets=async()=>{
   // e.preventDefault()
   try{
-    const get= await axios.get("https://daytodaynews-backend.onrender.com/student/gets"
+    const get= await axios.get("https://daytodaynews.onrender.com/student/gets"
     
   );
   
@@ -53,7 +53,7 @@ formData.append("slug", slug + "-" + Date.now());
      formData.append("language",language);
      formData.append("thumbnail",thumbnail);
      console.log("thumbnail",);
-    const addNews= await axios.post("https://daytodaynews-backend.onrender.com/student/upload",
+    const addNews= await axios.post("https://daytodaynews.onrender.com/student/upload",
       formData,
       {
      headers:{
@@ -110,7 +110,7 @@ gets()
 //     }
 
 //     const res = await axios.post(
-//       "https://daytodaynews-backend.onrender.com/student/upload",
+//       "https://daytodaynews.onrender.com/student/upload",
 //       formData,
 //       {
 //         headers: {
@@ -154,7 +154,7 @@ formData.append("short_description", short_description);
 }
       const token=localStorage.getItem("token")
       try{
-const update=await axios.put(`https://daytodaynews-backend.onrender.com/student/${id}`,formData,
+const update=await axios.put(`https://daytodaynews.onrender.com/student/${id}`,formData,
   {
     headers:{
       Authorization:`Bearer ${token}`
@@ -189,7 +189,7 @@ const [del,setDel]=useState({})
 const deletes=async(id)=>{
   const token=localStorage.getItem("token");
   try{
-    const deleted=await axios.delete(`https://daytodaynews-backend.onrender.com/student/${id}`,{
+    const deleted=await axios.delete(`https://daytodaynews.onrender.com/student/${id}`,{
       headers:{
         Authorization:`Bearer ${token}`
       }

@@ -24,7 +24,7 @@ const timeAgo = (date) => {
     const fetchNews = async () => {
       try {
         const res = await axios.get(
-          `https://daytodaynews-backend.onrender.com/student/${id}`
+          `https://daytodaynews.onrender.com/student/${id}`
         );
         setNews(res.data.data);
       } catch (err) {
@@ -59,7 +59,7 @@ const timeAgo = (date) => {
 
         {/* Thumbnail */}
         <img
-          src={`https://daytodaynews-backend.onrender.com/${news.thumbnail}`}
+          src={`https://daytodaynews.onrender.com/${news.thumbnail}`}
           alt="news"
           className="w-full h-[400px] object-cover"
         />

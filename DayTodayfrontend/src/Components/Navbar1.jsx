@@ -9,7 +9,7 @@ function Navbar1() {
 
   const handleSearch = async () => {
     try {
-      let res = await fetch(`https://daytodaynews-backend.onrender.com/search?q=${search}`)
+      let res = await fetch(`https://daytodaynews.onrender.com/search?q=${search}`)
       const data = await res.json()
       console.log(data);
       setResults(data);

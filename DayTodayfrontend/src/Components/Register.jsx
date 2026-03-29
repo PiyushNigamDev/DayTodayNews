@@ -9,7 +9,7 @@ const Register=()=>{
 const register=async(e)=>{
     e.preventDefault()
     try{
-const regist=await axios.post("https://daytodaynews-backend.onrender.com/student/register",{
+const regist=await axios.post("https://daytodaynews.onrender.com/student/register",{
     name,
     email,
     password
